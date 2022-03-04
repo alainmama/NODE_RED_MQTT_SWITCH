@@ -1,0 +1,316 @@
+[
+    {
+        "id": "cd51231e62566c9c",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "722ab28df7cb2453",
+        "type": "mqtt in",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "9911ca4670b98d12",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 100,
+        "wires": [
+            [
+                "cf7c1fb351e1e81e"
+            ]
+        ]
+    },
+    {
+        "id": "cf7c1fb351e1e81e",
+        "type": "json",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "2c17295ae771427e",
+                "0b0f20ae47132a68",
+                "f3b1b6d63a0f8f89",
+                "600d81f4caf7f64d"
+            ]
+        ]
+    },
+    {
+        "id": "2c17295ae771427e",
+        "type": "function",
+        "z": "cd51231e62566c9c",
+        "name": "ID",
+        "func": "msg.payload=msg.payload.id\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "11a77a4c038c3b59"
+            ]
+        ]
+    },
+    {
+        "id": "0b0f20ae47132a68",
+        "type": "function",
+        "z": "cd51231e62566c9c",
+        "name": "Temperatura",
+        "func": "msg.payload=msg.payload.temp\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 180,
+        "wires": [
+            [
+                "f7a12bdad33f5b98"
+            ]
+        ]
+    },
+    {
+        "id": "f3b1b6d63a0f8f89",
+        "type": "function",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "func": "msg.topic=msg.payload.id;\nmsg.payload=msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "3813f6bf5b4e9a5c"
+            ]
+        ]
+    },
+    {
+        "id": "600d81f4caf7f64d",
+        "type": "debug",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.msg",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "11a77a4c038c3b59",
+        "type": "ui_text",
+        "z": "cd51231e62566c9c",
+        "group": "a1164ca84113cebf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Nombre:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f7a12bdad33f5b98",
+        "type": "ui_gauge",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "group": "a1164ca84113cebf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-15",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 680,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3813f6bf5b4e9a5c",
+        "type": "ui_chart",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "group": "e1127ad7a58195df",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Historico de Temperatura",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-15",
+        "ymax": "50",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 710,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b528efb7aae78795",
+        "type": "ui_switch",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "a1164ca84113cebf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 220,
+        "y": 400,
+        "wires": [
+            [
+                "8b3913905d7d46d7"
+            ]
+        ]
+    },
+    {
+        "id": "8b3913905d7d46d7",
+        "type": "mqtt out",
+        "z": "cd51231e62566c9c",
+        "name": "",
+        "topic": "sic/flow3/switch/alainmm",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9911ca4670b98d12",
+        "x": 490,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9911ca4670b98d12",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "alainmm",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": "",
+        "credentials": {}
+    },
+    {
+        "id": "a1164ca84113cebf",
+        "type": "ui_group",
+        "name": "Valores",
+        "tab": "14bdc790dcddcab6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "e1127ad7a58195df",
+        "type": "ui_group",
+        "name": "Historico",
+        "tab": "14bdc790dcddcab6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "14bdc790dcddcab6",
+        "type": "ui_tab",
+        "name": "Flow 4",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]

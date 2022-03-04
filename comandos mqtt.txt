@@ -1,0 +1,10 @@
+Ejecutar Node Red en consola
+>node-red
+
+Comandos de MQTT
+
+*Subscriber, recibe el estado del switch y lo publica en el tópico 
+mosquitto_sub -h localhost -q 2 -i amanzo -t sic/flow3/switch/alainmm
+
+*Publisher, manda mensaje a node red en formato json
+mosquitto_pub -h localhost -t sic/flow3/temp -q 2 -i alainm -m "{\"id\":\"ALAIN\",\"temp\":\"30\",\"msg\":\"Chihuahua\"}"
